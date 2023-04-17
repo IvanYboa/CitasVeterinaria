@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, Fragment } from "react"
 import Error from "./Error";
 import Swal from "sweetalert2";
 
@@ -34,7 +34,11 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
 
     //Validación del formulario
     if([nombre, propietario, email, alta, sintomas].includes("")){
-      console.log("Todos los campos son requeridos");
+      Swal.fire({
+        title:'Error',
+        text: 'Todos los campos son requeridos',
+        icon: 'error'
+      });
       
       setError(true)
       return
@@ -91,7 +95,7 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
 
         <p className='text-lg mt-5 text-center mb-10'>
           Añade Pacientes y {""}
-          <span className='text-indigo-600 font-bold'>
+          <span className='text-blue-500 font-bold'>
             Administralos
           </span>
         </p>
@@ -100,9 +104,6 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
         className='bg-white shadow-md rounded-lg py-10 px-5 mb-10'
         onSubmit={handleSubmit}
         >
-          {error && <Error><p>Todos los campos son requeridos</p></Error>
-          }
-
           <div className='mb-5'>
             <label htmlFor='mascota'
             className='block text-gray-700 uppercase font-bold'>Nombre Mascota
@@ -162,12 +163,19 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
               onChange={ (e) => setSintomas(e.target.value) }
               />
           </div>
+          { paciente.id ? 
           <input type="submit" 
-          className='bg-indigo-600 w-full p-3 text-white uppercase font-bold 
-          hover:bg-indigo-700 cursor-pointer transition-all rounded-md' 
-          value={ paciente.id ? "Editar paciente" : "Agregar paciente" }
+          className='bg-yellow-600 w-full p-3 text-white uppercase font-bold 
+          hover:bg-yellow-500 cursor-pointer transition-all rounded-md' 
+          value="Editar paciente"
           />
-          
+          :
+          <input type="submit" 
+          className='bg-emerald-600 w-full p-3 text-white uppercase font-bold 
+          hover:bg-emerald-700 cursor-pointer transition-all rounded-md' 
+          value="Agregar paciente "
+          />
+          }
         </form>
 
     </div>

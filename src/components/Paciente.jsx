@@ -2,6 +2,7 @@ import Swal from "sweetalert2"
 
 const Paciente = ({paciente, setPaciente, eliminarPaciente}) => {
   const {nombre, propietario, email, alta, sintomas, id} = paciente
+  
   const handleEliminar = () => {
     const respuesta = Swal.fire({
       title: '¿Estás seguro que desesas eliminar al paciente ' + nombre + '?',
@@ -17,13 +18,12 @@ const Paciente = ({paciente, setPaciente, eliminarPaciente}) => {
           'Eliminado',
           'Registro eliminado con éxito',
           'success',
+          eliminarPaciente(id)
         )
       }
     })
-    if (respuesta) {
-      eliminarPaciente(id)
-    }
   }
+
   return (
     <div className='mx-5 my-10 bg-white shadow-md px-5 py-10 rounded-xl '>
         
@@ -56,8 +56,8 @@ const Paciente = ({paciente, setPaciente, eliminarPaciente}) => {
           <button 
             type="button"
             className="py-2 px-10 
-            bg-indigo-600 
-            hover:bg-indigo-700 
+            bg-emerald-600
+            hover:bg-emerald-700 
             text-white 
             font-bold 
             uppercase 
@@ -75,7 +75,8 @@ const Paciente = ({paciente, setPaciente, eliminarPaciente}) => {
             text-white 
             font-bold 
             uppercase 
-            rounded-lg"
+            rounded-lg
+            overflow-hidden"
             onClick={ handleEliminar }
           >
             Eliminar

@@ -10,7 +10,7 @@ const ListadoPacientes = ({ pacientes, setPaciente, eliminarPaciente }) => {
         <h2 className='font-black text-3xl text-center'>Listado de pacientes</h2>
         <p className='text-xl text-center mt-5 mb-10'>
           Administra tus {""}
-          <span className='text-indigo-600 font-bold'>
+          <span className='text-blue-500 font-bold'>
             Pacientes y Citas
           </span>
         </p>
